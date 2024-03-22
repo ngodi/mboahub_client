@@ -32,7 +32,7 @@ function PropertyDetail() {
     <div>
       <Navbar />
       <PropertyHeader house={house && house} />
-      <BreadCrumb />
+      <BreadCrumb house={house && house} />
       <div className="row mx-auto property-content bg-gray">
         <div className="col-md-1" />
         <div className="col-md-5">
@@ -42,7 +42,7 @@ function PropertyDetail() {
               &nbsp;BACK
             </span>
           </button>
-          {house?.images?.length > 0 && <PropertyImageGallery images={house.images} />}
+          {house?.images && <PropertyImageGallery images={house.images} />}
           <div className="amenities text-small">
             <div>
               <MdOutlineHouse size={40} color="#3270FC" />

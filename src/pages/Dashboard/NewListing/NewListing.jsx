@@ -15,6 +15,7 @@ import { useUploadImage } from '../../../hooks/images/useUploadImage';
 import useHouseCreate from '../../../hooks/houses/useHouseCreate';
 import ListingDetails from './ListingDetails';
 import LandedListingDetails from './LandedListingDetails';
+import TextAreaInput from '../../../components/forms/TextAreaInput';
 
 function NewListing() {
   const [address, setAddress] = useState('');
@@ -138,7 +139,21 @@ function NewListing() {
             </div>
           </div>
         </div>
-        {
+        <div className="listing-info shadow">
+          <h6>Listing Details</h6>
+          <div className="row">
+            <div className="col-md-6">
+              <FormInput
+                type="text"
+                name="totalArea"
+                placeholder="Total Area in metres squared"
+                label="Total Area"
+                data={data.totalArea}
+                handleChange={handleChange}
+              />
+            </div>
+          </div>
+          {
           data?.home_type === 'land'
             ? (
               <LandedListingDetails
@@ -155,6 +170,12 @@ function NewListing() {
               />
             )
         }
+          <div className="row">
+            <div className="col-md-6">
+              <TextAreaInput data={data.summary} handleChange={handleChange} label="Listing Details" name="summary" />
+            </div>
+          </div>
+        </div>
         <div className="listing-info shadow">
           <div className="d-flex flex-wrap">
             {urls && urls.map((url, i) => <img alt="house-thumbnail" key={i} width="50px" className="img img-thumbnail m-1" src={url} />)}

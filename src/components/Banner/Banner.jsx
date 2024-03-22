@@ -69,7 +69,7 @@ function Banner() {
               <button
                 type="button"
                 onClick={() => navigate(PROPERTIES_URL)}
-                className="bg-primary col-md-2 text-small text-bold text-white"
+                className="bg-primary col-md-2 text-small text-bold text-white border-0"
               >
                 Search&nbsp;&nbsp;
                 <AiOutlineSearch />

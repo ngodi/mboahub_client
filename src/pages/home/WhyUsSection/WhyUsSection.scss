@@ -1,9 +1,20 @@
 .why-item-desc{
   padding: 0 18px;
   margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
 }
-.why-item{
-    display: flex;
+
+.why-us-content {
+  display: flex;
+  flex-direction: column;
+  width: 40vw !important;
+}
+
+.why-us-img-container img {
+  width: 40vw !important;
 }
 
 @media screen and (max-width: 850px) {
@@ -13,5 +24,9 @@
 
   .why-us-section >* {
     margin: 10px;
+  }
+
+  .why-item-desc{
+    flex-direction: column;
   }
 }

@@ -2,15 +2,15 @@
 import React from 'react';
 
 import { MdLocationOn } from 'react-icons/md';
-import { BiGitCompare, BiCamera, BiCube } from 'react-icons/bi';
-import { BsHeart } from 'react-icons/bs';
+import { BiCamera, BiCube } from 'react-icons/bi';
+// import { BsHeart } from 'react-icons/bs';
 import { FaBed, FaBath } from 'react-icons/fa';
 
 import './PropertyItem.css';
 import { Link } from 'react-router-dom';
 import PropertyType from '../common/PropertyType/PropertyType';
-import Rating from '../common/Rating/Rating';
-import IconBox from '../common/IconBox/IconBox';
+// import Rating from '../common/Rating/Rating';
+// import IconBox from '../common/IconBox/IconBox';
 import { costInThousands } from '../../services/utilities';
 import { BUSINESS_TYPE_OBJECT, PROPERTY_TYPE_OBJECT } from '../../constants/houseDetails';
 
@@ -36,8 +36,19 @@ const PropertyItem = ({ house }) => {
           </div>
           <div className="property-item-up-right">
             <div className="up-right-top">
-              <IconBox icon={<BsHeart size={20} />} bg_color="#FFFFFF" text_color="#2270FC" icon_size="p-2 m-2" />
-              <IconBox icon={<BiGitCompare size={20} />} bg_color="#FFFFFF" text_color="#2270FC" icon_size="p-2 m-2" />
+              {/* <IconBox
+                icon={<BsHeart size={20} />}
+                bg_color="#FFFFFF"
+                text_color="#2270FC"
+                icon_size="p-2 m-2"
+              />
+              <IconBox
+                icon={<BiGitCompare
+                size={20} />}
+                bg_color="#FFFFFF"
+                text_color="#2270FC"
+                icon_size="p-2 m-2"
+              /> */}
             </div>
             <div className="up-right-bottom">
               <BiCamera size={20} />
@@ -69,7 +80,7 @@ const PropertyItem = ({ house }) => {
             <span>
               <BiCube size={20} />
               &nbsp;
-              <span className="property-count">450&nbsp;ft2</span>
+              <span className="property-count">450&nbsp;m2</span>
             </span>
           </div>
         </div>
@@ -80,7 +91,7 @@ const PropertyItem = ({ house }) => {
               {house?.user.published_by}
             </h5>
           </div>
-          <Rating />
+          {/* <Rating /> */}
         </div>
       </div>
     </div>

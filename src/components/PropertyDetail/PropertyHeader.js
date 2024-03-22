@@ -3,9 +3,9 @@ import React from 'react';
 
 import { Oval } from 'react-loader-spinner';
 
-import { AiFillEye, AiFillHeart } from 'react-icons/ai';
+// import { AiFillEye, AiFillHeart } from 'react-icons/ai';
 
-import ActionButton from '../common/ActionButton/ActionButton';
+// import ActionButton from '../common/ActionButton/ActionButton';
 import LocationInfo from '../common/LocationInfo/LocationInfo';
 import MainHeading from '../common/MainHeading/MainHeading';
 import PropertyType from '../common/PropertyType/PropertyType';
@@ -39,8 +39,8 @@ function PropertyHeader({ house }) {
         </div>
       </div>
       <div className="property-detail-right mb-4">
-        <ActionButton text="Share" />
-        <div className="mt-4 d-flex">
+        {/* <ActionButton text="Share" /> */}
+        {/* <div className="mt-4 d-flex">
           <div className="">
             <AiFillEye color="#3270FC" />
             &nbsp;&nbsp;&nbsp;
@@ -52,7 +52,7 @@ function PropertyHeader({ house }) {
             &nbsp;&nbsp;&nbsp;
             <span>Bookmark - 24</span>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

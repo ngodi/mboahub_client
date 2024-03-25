@@ -26,7 +26,7 @@ function NewsLetterSection() {
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} name="news_letter" placeholder="Enter Your Email" className="news-letter-email text-small" />
             <SmallTextButton handleClick={handleClick} text="Subscribe" classes="px-4" />
           </div>
-          {(success) && <strong style={{ color: 'white' }}>Thank you for subscribing to our mailing list.</strong> }
+          {(success) && <strong style={{ color: 'limegreen' }}>Thank you for subscribing to our mailing list.</strong> }
         </div>
       </div>
     </div>

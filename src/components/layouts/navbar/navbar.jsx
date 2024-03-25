@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import Logo from '../../common/Logo/Logo';
 import './navbar.scss';
 import { ADMIN_DASHBOARD_URL, HOME_URL, SIGNIN_PATH } from '../../../routes/frontend';
 import WhatsApp from '../../libs/WhatsApp/WhatsApp';
+import { UserContext } from '../../../contexts/UserContext';
 
 export default function Navbar() {
+  const { isLoggedIn } = useContext(UserContext);
+
   return (
     <nav className="fixed-top">
       <Logo />
@@ -29,18 +32,25 @@ export default function Navbar() {
           <li className="nav-content">
             <Link to={HOME_URL} className="nav-link active" aria-current="page">Home</Link>
           </li>
-          <li>
-            <Link to={SIGNIN_PATH} className="nav-link active" aria-current="page">Login</Link>
-          </li>
-          <li>
-            <Link
-              to={ADMIN_DASHBOARD_URL}
-              className="nav-link active"
-              aria-current="page"
-            >
-              Dashboard
-            </Link>
-          </li>
+          {
+            isLoggedIn
+              ? (
+                <li>
+                  <Link
+                    to={ADMIN_DASHBOARD_URL}
+                    className="nav-link active"
+                    aria-current="page"
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+              )
+              : (
+                <li>
+                  <Link to={SIGNIN_PATH} className="nav-link active" aria-current="page">Login</Link>
+                </li>
+              )
+          }
         </ul>
       </div>
     </nav>

@@ -17,6 +17,8 @@ import Navbar from './components/layouts/navbar/navbar';
 import BottomNav from './components/layouts/BottomNav/BottomNav';
 import { ADMIN_DASHBOARD_URL, HOME_URL, SIGNIN_PATH } from './routes/frontend';
 import NotFound from './pages/NotFound/NotFound';
+import ProtectedRoutes from './routes/ProtectedRoutes';
+import { AnonymousRoute } from './routes/AnonymousRoute';
 
 function App() {
   return (
@@ -24,13 +26,17 @@ function App() {
       <Navbar />
       <Routes>
         <Route path={HOME_URL} element={<Home />} />
-        <Route path={SIGNIN_PATH} element={<SignInSignUp />} />
-        <Route path={ADMIN_DASHBOARD_URL} element={<Dashboard />}>
-          <Route path="" element={<AllMyListings />} />
-          <Route path="my_listings" element={<AllMyListings />} />
-          <Route path="new_listing" element={<NewListing />} />
-          <Route path=":house_id" element={<PropertyDetails />} />
-          <Route path="edit_profile" element={<MyProfile />} />
+        <Route element={<AnonymousRoute />}>
+          <Route path={SIGNIN_PATH} element={<SignInSignUp />} />
+        </Route>
+        <Route element={<ProtectedRoutes />}>
+          <Route path={ADMIN_DASHBOARD_URL} element={<Dashboard />}>
+            <Route path="" element={<AllMyListings />} />
+            <Route path="my_listings" element={<AllMyListings />} />
+            <Route path="new_listing" element={<NewListing />} />
+            <Route path=":house_id" element={<PropertyDetails />} />
+            <Route path="edit_profile" element={<MyProfile />} />
+          </Route>
         </Route>
         <Route path="properties/:listingName?/:location?/:businessType?" element={<Properties />} />
         <Route path="houses/:house_id" element={<PropertyDetail />} />

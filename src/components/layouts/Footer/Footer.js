@@ -49,25 +49,15 @@ function Footer() {
               <IconBox icon={<AiFillLinkedin size={20} />} bgColor="#2270FC" textColor="#FFFFFF" iconSize="m-1 p-1" />
             </div>
           </div>
-          {/* <div className='col-sm text-dark-blue'>
-            <h5 className='my-4 text-bold'>Helpful links</h5>
-            <ul className='helpful-links'>
-              <li>About Our Company</li>
-              <li className='mt-1'>Our last News</li>
-              <li className='mt-1'>Pricing Plans</li>
-              <li className='mt-1'>Contacts</li>
-              <li>Help Center</li>
-            </ul>
-          </div> */}
           <div className="col-sm text-dark-blue">
             <br />
             <br />
             {' '}
             <br />
             <h5 className="mt-2 my-2 text-bold">Contact Info</h5>
-            <ContactItem icon={<AiOutlineMail size="20" />} text="yourmail@domain.com" />
-            <ContactItem icon={<MdOutlineLocationOn size="20" />} text="USA 27TH Brooklyn NY" />
-            <ContactItem icon={<AiOutlinePhone size="20" />} text="+7(111)123456789" />
+            <ContactItem icon={<AiOutlineMail size="20" />} text="info@mboahub.com" />
+            <ContactItem icon={<MdOutlineLocationOn size="20" />} text="Douala, Akwa, Cameroon" />
+            <ContactItem icon={<AiOutlinePhone size="20" />} text="+(237)620 742 204" />
           </div>
           <div className="col-sm text-dark-blue">
             <br />
@@ -84,7 +74,7 @@ function Footer() {
         <br />
         <br />
         <div className="container pt-4 d-flex-between-center text-bold text-small">
-          <span className="text-dark-blue">&copy;&nbsp;MboaHub 2022&nbsp;.All rights reserved.</span>
+          <span className="text-dark-blue">&copy;&nbsp;MboaHub 2024&nbsp;.All rights reserved.</span>
           <div className="text-blue">
             <span>Terms of use</span>
 &nbsp;&nbsp;

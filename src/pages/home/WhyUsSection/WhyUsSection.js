@@ -19,7 +19,7 @@ const securePayments = 'Our secure payments panel ensures the safety and confide
 function WhyUsSection() {
   return (
     <div className="main-margin">
-      <div className="why-us-section mx-4 d-flex flex-column align-items-center justify-content-between">
+      <div className="why-us-section container">
         <div className="secondary-heading">Why Choose Our Properties</div>
         <div className="tertiary-heading">Find out more about us.</div>
         <Carousel autoPlay showThumbs={false} interval={3000} infiniteLoop transitionTime={2000}>

@@ -13,7 +13,7 @@ import { MenuProvider } from './contexts/MenuContext';
 
 const App = lazy(() => import('./App'));
 
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Suspense fallback={<FallBack />}>
       <Router>
@@ -27,5 +27,4 @@ ReactDOM.render(
       </Router>
     </Suspense>
   </React.StrictMode>,
-  document.getElementById('root'),
 );

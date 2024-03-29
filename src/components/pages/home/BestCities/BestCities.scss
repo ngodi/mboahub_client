@@ -1,0 +1,80 @@
+@import '../../../../styles/colors.scss';
+
+.best-cities{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 10px;
+    min-width: 300px;
+}
+.best-city-menu{
+    height: 600px;
+    background-color: $primary-blue;
+    padding: 50px;
+    width: 40vw;
+    min-width: 300px;
+    margin: 5px;
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+   // background-image: url('/photos/blue-gradient.avif');
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.best-city-content{
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    flex-grow: 1;
+    height: 600px;
+    padding: 18% 3%;
+    margin: 5px;
+    width: 30vw;
+    min-width: 300px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.best-cities-desc-text {
+  background-color: #0990e4b9;
+  padding: 10px;
+  border-radius: 10px;
+  width: 50%;
+}
+
+@media screen and (max-width: 600px) {
+  .best-cities {
+    flex-direction: column;
+  };
+
+  .best-city-content, .best-city-menu {
+    width: 95vw;
+    height: 400px;
+  };
+
+  .best-city-menu {
+    padding: 5px;
+  }
+
+  .best-cities-desc-text {
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .best-city-menu {
+    padding: 5px;
+  }
+
+  .best-cities-desc-text {
+    width: 95%;
+  }
+}

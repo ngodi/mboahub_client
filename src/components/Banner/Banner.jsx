@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BackgroundSlider from 'react-background-slider';
 import { AiOutlineMail, AiOutlinePhone, AiOutlineSearch } from 'react-icons/ai';
@@ -13,6 +13,10 @@ function Banner() {
   const navigate = useNavigate();
 
   const { inputObj, setInputObj } = useContext(SearchInputContext);
+
+  useEffect(() => {
+    setInputObj(undefined);
+  }, [setInputObj]);
 
   return (
     <section className="banner-section position-relative">
@@ -29,7 +33,7 @@ function Banner() {
           {' '}
           info@mboahub.com
         </span>
-        <WhatsApp phone="672378393" text="Chat With Us" />
+        <WhatsApp phone="672378393" text="Chat With Us" color="limegreen" />
       </div>
       <div className="banner-content container">
         <strong>Real Estate Searching Platform</strong>
@@ -68,7 +72,7 @@ function Banner() {
               </select>
               <button
                 type="button"
-                onClick={() => navigate(PROPERTIES_URL)}
+                onClick={() => inputObj && navigate(PROPERTIES_URL)}
                 className="bg-primary col-md-2 text-small text-bold text-white border-0"
               >
                 Search&nbsp;&nbsp;

@@ -1,0 +1,27 @@
+.why-item-desc{
+  padding: 0 18px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+};
+
+.why-us-content {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 850px) {
+  .why-us-section {
+    flex-direction: column;
+  }
+
+  .why-us-section >* {
+    margin: 10px;
+  }
+
+  .why-item-desc{
+    flex-direction: column;
+  }
+}

@@ -14,7 +14,7 @@ import PropertyType from '../common/PropertyType/PropertyType';
 function PropertyHeader({ house }) {
   const backgroundImage = house && house.images[0];
   return (
-    <div className="property-detail-header pb-4 bg-gray" style={{ backgroundImage: `url(${backgroundImage})` }}>
+    <div className="property-detail-header pb-4" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className="property-detail-left">
         <div>
           <PropertyType type="Sale" />

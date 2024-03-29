@@ -13,12 +13,12 @@ import ContactItem from '../common/ContactItem/ContactItem';
 import TextButton from '../common/TextButton/TextButton';
 import BreadCrumb from '../BreadCrumb/BreadCrumb';
 import ContactForm from '../ContactForm/ContactForm';
-import Footer from '../layouts/Footer/Footer';
+import Footer from '../Footer/Footer';
 import MapComponent from '../MapComponent/MapComponent';
 
 import './PropertyDetail.css';
 import PropertyHeader from './PropertyHeader';
-import Navbar from '../layouts/navbar/navbar';
+import Navbar from '../navigation/navbar/navbar';
 import { useFetchHouse } from '../../hooks/houses/useFetchHouse';
 import PropertyImageGallery from '../ImageGallery/PropertyImageGallery';
 

@@ -22,7 +22,7 @@ function PropertyHeader({ house }) {
         </div>
         <div className="mt-4">{house ? <MainHeading heading={house.listing_name} /> : <Oval color="#00BFFF" height={30} width={30} />}</div>
         <div className="mt-2 d-flex">
-          <LocationInfo text_color="text-white" address={`${house ? house.location : '...'}`} />
+          <LocationInfo textColor="text-white" address={`${house ? house.location : '...'}`} />
           &nbsp;&nbsp;
           {/* <Rating classes="text-white" review="Good" /> */}
         </div>

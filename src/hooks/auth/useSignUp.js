@@ -4,61 +4,92 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SIGNUP_URL } from '../../routes/server';
 import { postRequest } from '../../utils/requests';
+import { useOtpResendTimerContext } from '../../contexts/OtpResendTimerContext';
 
 export const useSignUp = () => {
+  const navigate = useNavigate();
+  const { startResendTimer } = useOtpResendTimerContext();
+
   const [data, setData] = useState({
-    role: '',
+    name: '',
     email: '',
     password: '',
-    password_confirmation: '',
+    passwordConfirmation: '',
   });
   const [response, setResponse] = useState();
-  const [errors, setErrors] = useState();
+  const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
-
-  const formatError = (errors) => {
-    if (typeof errors === 'object') {
-      if (errors[0].toLowerCase().includes('validation')) {
-        const formatedError = errors[0].split(':');
-        setErrors(formatedError[1].split(','));
-      }
+  const formatError = (res) => {
+    if (Array.isArray(res.errors)) {
+      const formatedErrors = res.errors.map((error) => ({
+        field: error.field,
+        message: error.message,
+      }));
+      setErrors(formatedErrors);
     } else {
-      setErrors(errors);
+      setErrors(res.message);
     }
   };
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     setLoading(true);
     e.preventDefault();
 
+    if (!data.name) {
+      setErrors((prev) => [
+        ...(Array.isArray(prev) ? prev : []),
+        { field: 'name', message: 'Name is required' },
+      ]);
+    }
+
     if (!data.email) {
-      setErrors('Email is required');
+      setErrors((prev) => [
+        ...(Array.isArray(prev) ? prev : []),
+        { field: 'email', message: 'Email is required' },
+      ]);
+    }
+
+    if (!data.password) {
+      setErrors((prev) => [
+        ...(Array.isArray(prev) ? prev : []),
+        { field: 'password', message: 'Password is required' },
+      ]);
+    }
+
+    if (!data.passwordConfirmation) {
+      setErrors((prev) => [
+        ...(Array.isArray(prev) ? prev : []),
+        {
+          field: 'passwordConfirmation',
+          message: 'Password confirmation is required',
+        },
+      ]);
+    }
+
+    if (
+      !data.name ||
+      !data.email ||
+      !data.password ||
+      !data.passwordConfirmation
+    ) {
       setLoading(false);
       return;
     }
 
-    (async () => {
-      try {
-        const res = await postRequest(data, SIGNUP_URL);
-        if (res.success) {
-          localStorage.setItem(
-            'login',
-            JSON.stringify({
-              token: res.data.token,
-            }),
-          );
-          navigate('/dashboard');
-          setLoading(false);
-        } else {
-          formatError(res.errors);
-          setLoading(false);
-        }
-      } catch (e) {
+    try {
+      const res = await postRequest(data, SIGNUP_URL);
+      if (res.success !== false) {
+        startResendTimer();
+        navigate('/otp_verification');
+        setLoading(false);
+      } else {
+        formatError(res);
         setLoading(false);
       }
-    })();
+    } catch (e) {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -78,6 +109,13 @@ export const useSignUp = () => {
   };
 
   return {
-    handleSelect, handleSignup, handleChange, response, loading, errors, setResponse, data,
+    handleSelect,
+    handleSignup,
+    handleChange,
+    response,
+    loading,
+    errors,
+    setResponse,
+    data,
   };
 };

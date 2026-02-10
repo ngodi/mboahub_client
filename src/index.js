@@ -8,8 +8,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { BrowserRouter as Router } from 'react-router-dom';
 import FallBack from './components/FallBack';
 import { SearchInputContextProvider } from './contexts/SearchInputContext';
-import { UserProvider } from './contexts/UserContext';
 import { MenuProvider } from './contexts/MenuContext';
+import { AuthProvider } from './contexts/AuthContext';
+import { OtpResendTimerProvider } from './contexts/OtpResendTimerContext';
 
 const App = lazy(() => import('./App'));
 
@@ -18,11 +19,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Suspense fallback={<FallBack />}>
       <Router>
         <SearchInputContextProvider>
-          <UserProvider>
+          <AuthProvider>
             <MenuProvider>
-              <App />
+              <OtpResendTimerProvider>
+                <App />
+              </OtpResendTimerProvider>
             </MenuProvider>
-          </UserProvider>
+          </AuthProvider>
         </SearchInputContextProvider>
       </Router>
     </Suspense>

@@ -1,9 +1,10 @@
 @import './styles/styles.scss';
 
-.App{
+.App {
   font-family: 'open sans';
   position: relative;
   padding-bottom: 70px;
-  width: 100vw;
   min-width: 300px;
+  max-width: 1600px;
+  margin: 0 auto;
 }

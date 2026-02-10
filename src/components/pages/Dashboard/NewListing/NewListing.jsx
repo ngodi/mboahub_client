@@ -1,12 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable prefer-destructuring */
 import React, { useState, useEffect } from 'react';
 import { IoMdInformation } from 'react-icons/io';
 import { GoLocation } from 'react-icons/go';
-import GooglePlaces from '../../../apis/GooglePlaces/GooglePlaces';
+// import GooglePlaces from '../../../apis/GooglePlaces/GooglePlaces';
 import FormInput from '../../../forms/FormInput';
 import SelectInput from '../../../forms/SelectInput';
 
@@ -24,21 +19,40 @@ function NewListing() {
     lng: null,
   });
 
+  const { files, urls, imageLoading, handleFileChange, uploadImage } =
+    useUploadImage();
   const {
-    files, urls, imageLoading, handleFileChange, uploadImage,
-  } = useUploadImage();
-  const {
-    handleChange, handleSelect, handleCreateHouse, error, houseloading, response, data,
+    handleChange,
+    handleSelect,
+    handleCreateHouse,
+    error,
+    houseloading,
+    response,
+    data,
   } = useHouseCreate(urls);
+
+  const formErrors = Array.isArray(error)
+    ? error.reduce((acc, error) => {
+        acc[error.field] = error.message;
+        return acc;
+      }, {})
+    : {};
 
   const houseOptions = [
     { label: 'Select house type', value: '' },
-    { label: 'Single Room', value: 'single_room' },
-    { label: 'Studio', value: 'studio' },
-    { label: 'Apartment', value: 'apartment' },
-    { label: 'Villa', value: 'villa' },
-    { label: 'Hotel', value: 'hotel' },
-    { label: 'Land', value: 'land' },
+    { label: 'Single Room', value: 'SINGLE_ROOM' },
+    { label: 'Studio', value: 'STUDIO' },
+    { label: 'Apartment', value: 'APARTMENT' },
+    { label: 'Villa', value: 'VILLA' },
+    { label: 'Hotel', value: 'HOTEL' },
+    { label: 'Land', value: 'LAND' },
+  ];
+
+  const propertyStatusOptions = [
+    { label: 'available', value: 'AVAILABLE' },
+    { label: 'not available', value: 'UNAVAILABLE' },
+    { label: 'pending', value: 'PENDING' },
+    { label: 'sold', value: 'SOLD' },
   ];
 
   let addressArr = '';
@@ -53,155 +67,223 @@ function NewListing() {
   }, [address, coordinates]);
 
   return (
-    <div className="new-listing">
-      <h5 className="my-2 pb-4 border-bottom">ADD LISTING</h5>
+    <div className='new-listing'>
+      <h5 className='my-2 pb-4 border-bottom'>ADD LISTING</h5>
       <form>
-        <div className="listing-info shadow">
+        <div className='listing-info shadow'>
           <h6>
-            <span className="text-blue text-bold">
+            <span className='text-blue text-bold'>
               <IoMdInformation />
             </span>
             Basic Informations
           </h6>
-          <div className="row">
-            <div className="col-md-4 mt-4">
+          <div className='row'>
+            <div className='col-md-4'>
               <SelectInput
-                label="For sale or rental"
+                label='For sale or rental'
                 options={[
                   { label: 'Sale or rent', value: '' },
-                  { label: 'For sale', value: 'for_sale' },
-                  { label: 'For rent', value: 'for_rent' },
+                  { label: 'For sale', value: 'SALE' },
+                  { label: 'For rent', value: 'RENT' },
                 ]}
-                name="businessType"
-                data={data.businessType}
+                name='propertyType'
+                data={data.propertyType}
                 handleSelect={handleSelect}
+                error={formErrors.propertyType}
               />
             </div>
-          </div>
-          <div className="row">
-            <div className="col-md-4">
+            <div className='col-md-4'>
               <FormInput
-                type="text"
-                name="listing_name"
-                placeholder="Title of your listing"
-                label="Listing Title"
-                data={data.listing_name}
+                type='text'
+                name='listingName'
+                placeholder='Name of your listing'
+                label='Listing Name'
+                data={data.listingName}
+                error={formErrors.listingName}
                 handleChange={handleChange}
               />
             </div>
-            <div className="col-md-4 mt-4">
+          </div>
+          <div className='row'>
+            <div className='col-md-4 mt-4'>
               <SelectInput
-                label="Property Type"
+                label='Property Category'
                 options={houseOptions}
-                name="home_type"
-                data={data.home_type}
+                name='propertyCategory'
+                data={data.propertyCategory}
                 handleSelect={handleSelect}
+                error={formErrors.propertyCategory}
               />
             </div>
-            <div className="col-md-4">
+            <div className='col-md-4 mt-4'>
+              <SelectInput
+                label='Property Status'
+                options={propertyStatusOptions}
+                name='propertyStatus'
+                data={data.propertyStatus}
+                handleSelect={handleSelect}
+                error={formErrors.propertyStatus}
+              />
+            </div>
+            <div className='col-md-4 mt-4'>
               <FormInput
-                type="text"
-                name="cost"
-                placeholder="Listing Price"
-                label="Listing Price"
-                data={data.cost}
+                type='text'
+                name='price'
+                placeholder='Listing Price'
+                label='Listing Price'
+                data={data.price}
+                error={formErrors.price}
                 handleChange={handleChange}
               />
             </div>
           </div>
         </div>
-        <div className="listing-info shadow">
-          <div className="text-blue text-bold d-flex">
+        <div className='listing-info shadow'>
+          <div className='text-blue text-bold d-flex'>
             <GoLocation />
-            <h6 className="ml-2">Location of Listing</h6>
+            &nbsp;
+            <h6 className='ml-2'>Location of Listing</h6>
           </div>
-          <div className="row">
-            <div className="col-md-12">
-              <GooglePlaces
+          <div className='row'>
+            <div className='col-md-12'>
+              {/* <GooglePlaces
                 address={address}
                 setAddress={setAddress}
                 coordinates={coordinates}
                 setCoordinates={setCoordinates}
+              /> */}
+            </div>
+            <div className='col-md-6'>
+              <FormInput
+                type='text'
+                name='street'
+                placeholder='Street'
+                label='Street'
+                data={data.street}
+                error={formErrors.street}
+                handleChange={handleChange}
               />
             </div>
-            <div className="col-md-6">
-              <FormInput type="text" name="city" placeholder="City" label="City" data={data.city} handleChange={handleChange} />
-            </div>
-            <div className="col-md-6">
+            <div className='col-md-6'>
               <FormInput
-                type="text"
-                name="country"
-                placeholder="Enter Country"
-                label="Listing Country"
+                type='text'
+                name='city'
+                placeholder='City'
+                label='City'
+                data={data.city}
+                error={formErrors.city}
+                handleChange={handleChange}
+              />
+            </div>
+            <div className='col-md-6'>
+              <FormInput
+                type='text'
+                name='country'
+                placeholder='Enter Country'
+                label='Listing Country'
                 data={data.country}
+                error={formErrors.country}
                 handleChange={handleChange}
               />
             </div>
           </div>
         </div>
-        <div className="listing-info shadow">
+        <div className='listing-info shadow'>
           <h6>Listing Details</h6>
-          <div className="row">
-            <div className="col-md-6">
+          <div className='row'>
+            <div className='col-md-6'>
               <FormInput
-                type="text"
-                name="totalArea"
-                placeholder="Total Area in metres squared"
-                label="Total Area"
+                type='text'
+                name='totalArea'
+                placeholder='Total Area in metres squared'
+                label='Total Area'
                 data={data.totalArea}
+                error={formErrors.totalArea}
                 handleChange={handleChange}
               />
             </div>
           </div>
-          {
-          data?.home_type === 'land'
-            ? (
-              <LandedListingDetails
+          {data?.home_type === 'land' ? (
+            <LandedListingDetails
+              handleChange={handleChange}
+              handleSelect={handleSelect}
+              data={data}
+            />
+          ) : (
+            <ListingDetails
+              handleChange={handleChange}
+              handleSelect={handleSelect}
+              data={data}
+              formErrors={formErrors}
+            />
+          )}
+          <div className='row'>
+            <div className='col-md-6'>
+              <TextAreaInput
+                data={data.summary}
                 handleChange={handleChange}
-                handleSelect={handleSelect}
-                data={data}
+                label='Listing Details'
+                name='summary'
+                error={formErrors.summary}
               />
-            )
-            : (
-              <ListingDetails
-                handleChange={handleChange}
-                handleSelect={handleSelect}
-                data={data}
-              />
-            )
-        }
-          <div className="row">
-            <div className="col-md-6">
-              <TextAreaInput data={data.summary} handleChange={handleChange} label="Listing Details" name="summary" />
             </div>
           </div>
         </div>
-        <div className="listing-info shadow">
-          <div className="d-flex flex-wrap">
-            {urls && urls.map((url, i) => <img alt="house-thumbnail" key={i} width="50px" className="img img-thumbnail m-1" src={url} />)}
+        <div className='listing-info shadow'>
+          <div className='d-flex flex-wrap'>
+            {urls &&
+              urls.map((url, i) => (
+                <img
+                  alt='house-thumbnail'
+                  key={i}
+                  width='50px'
+                  className='img img-thumbnail m-1'
+                  src={url}
+                />
+              ))}
             {imageLoading && 'uploading ...'}
           </div>
           <h6>Image Upload</h6>
-          <div className="row">
-            <div className="col-md-8 ">
-              <div className="form-group">
-                <input type="file" className="form-control" disabled={urls && urls.length >= 10} onChange={handleFileChange} multiple />
+          <div className='row'>
+            <div className='col-md-8 '>
+              <div className='form-group'>
+                <input
+                  type='file'
+                  className='form-control'
+                  disabled={urls && urls.length >= 10}
+                  onChange={handleFileChange}
+                  multiple
+                />
               </div>
             </div>
-            <div className="col-md-4">
-              <button disabled={files.length === 0} type="button" className="btn btn-primary btn-block" onClick={uploadImage}>
+            <div className='col-md-4'>
+              <button
+                disabled={files.length === 0}
+                type='button'
+                className='btn btn-primary btn-block'
+                onClick={uploadImage}
+              >
                 {' '}
                 {imageLoading ? '...' : 'Upload'}
               </button>
             </div>
           </div>
-          <span className="text-danger">{error && error}</span>
+          {error && !Array.isArray(error) && (
+            <p className='text-danger'>{error}</p>
+          )}
           <br />
-          <button type="button" disabled={imageLoading} className="btn btn-primary mt-4" onClick={handleCreateHouse}>
+          <button
+            type='button'
+            disabled={imageLoading}
+            className='btn btn-primary mt-4'
+            onClick={handleCreateHouse}
+          >
             {houseloading && '...'}
             Add House
           </button>
-          {response && <div className="text-blue">House created successfully !!</div>}
+          {response && (
+            <div className='text-blue'>House created successfully !!</div>
+          )}
         </div>
       </form>
     </div>

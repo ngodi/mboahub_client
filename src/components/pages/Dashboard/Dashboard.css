@@ -1,48 +1,51 @@
 .dashboard {
-    margin-top: 50px;
-    margin-bottom: 150px;
-    padding-top: 50px;
-    height: 100vh;
-    background-color: #F6F7FB;
-    position: relative;
+  margin-top: 100px;
+  padding-top: 50px;
+  /* background-color: #f6f7fb; */
+  background-color: #fff;
+  position: relative;
 }
 
-.dashboard-content{
-  width: 80vw;
-  margin-left: 21vw;
-  background-color: #F6F7FB;
+.dashboard-content {
+  width: 60vw;
+  background-color: #fff;
+  position: absolute;
+  right: 0px;
 }
 
 .left-menu {
-  width: 22vw;
-  height: 100%;
+  width: 15vw;
+  min-width: 250px;
+  height: 100vh;
   position: fixed;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .left-menu > * {
-    width: 18vw;
-    height: 50px;
-    padding-left: 40px;
-    padding-top: 10px;
-    border-bottom: 1px solid lightgray;
-    cursor: pointer;
+  width: 13vw;
+  min-width: 220px;
+  height: 50px;
+  padding-left: 40px;
+  padding-top: 10px;
+  border-bottom: 1px solid lightgray;
+  cursor: pointer;
 }
 
-.left-menu > *:hover{
-   background:lightgray;
-   font-size: 14px;
+.left-menu > *:hover {
+  background: lightgray;
+  font-size: 14px;
 }
 
 @media screen and (max-width: 815px) {
-    .left-menu {
-      display: none;
-    }
-    .dashboard-content{
-        width: 100vw;
-        margin: 0 auto;
-    }
+  .left-menu {
+    display: none;
   }
+  .dashboard-content {
+    width: 90vw;
+    margin: 0 auto;
+  }
+}

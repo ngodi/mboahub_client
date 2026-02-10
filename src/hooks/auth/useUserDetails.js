@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable camelcase */
-/* eslint-disable import/prefer-default-export */
 import { useState, useEffect } from 'react';
 import { PASSWORD_UPDATE_URL, USER_DETAILS_URL } from '../../routes/server';
 import { getRequestWithToken, putRequestWithToken } from '../../utils/requests';
@@ -70,7 +69,11 @@ export const useUserDetails = () => {
     next(true);
     (async () => {
       try {
-        const res = await putRequestWithToken(updateData, token, USER_DETAILS_URL);
+        const res = await putRequestWithToken(
+          updateData,
+          token,
+          USER_DETAILS_URL,
+        );
         if (res.success) {
           setData(res.data);
           next(false);
@@ -92,7 +95,11 @@ export const useUserDetails = () => {
     handleUpdate(e, setPersonalInfoLoading);
   };
 
-  const handlePasswordChange = (current_password, new_password, password_confirmation) => {
+  const handlePasswordChange = (
+    current_password,
+    new_password,
+    password_confirmation,
+  ) => {
     setPasswordLoading(true);
     const updateData = {
       current_password,
@@ -102,7 +109,11 @@ export const useUserDetails = () => {
 
     (async () => {
       try {
-        const res = await putRequestWithToken(updateData, token, PASSWORD_UPDATE_URL);
+        const res = await putRequestWithToken(
+          updateData,
+          token,
+          PASSWORD_UPDATE_URL,
+        );
         if (res.success) {
           setData(res.data);
           setPasswordLoading(false);

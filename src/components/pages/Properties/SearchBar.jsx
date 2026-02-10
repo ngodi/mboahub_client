@@ -27,38 +27,57 @@ const SearchBar = () => {
   const filterHouse = (e) => {
     e.preventDefault();
     setInputObj({
-      ...inputObj, city, street, country, homeType,
+      ...inputObj,
+      city,
+      street,
+      country,
+      homeType,
     });
   };
 
   return (
-    <div className="w-100 bg-white search-bar">
-      <div className="search-bar-content row">
-        <div className="mt-2 col-md-2">
+    <div className='w-75 bg-white search-bar'>
+      <div className='search-bar-content row'>
+        <div className='mt-2 col-md-2'>
           <FormInput
-            type="text"
-            name="street"
-            placeholder="Street address"
+            type='text'
+            name='street'
+            placeholder='Street address'
             data={street}
             handleChange={(e) => setStreet(e.target.value)}
           />
         </div>
-        <div className="mt-2 col-md-2">
-          <FormInput type="text" name="city" placeholder="All Cities" data={city} handleChange={(e) => setCity(e.target.value)} />
-        </div>
-        <div className="mt-2 mx-2 col-md-2">
+        <div className='mt-2 col-md-2'>
           <FormInput
-            type="text"
-            name="country"
-            placeholder="All Countries"
+            type='text'
+            name='city'
+            placeholder='All Cities'
+            data={city}
+            handleChange={(e) => setCity(e.target.value)}
+          />
+        </div>
+        <div className='mt-2 mx-2 col-md-2'>
+          <FormInput
+            type='text'
+            name='country'
+            placeholder='All Countries'
             data={country}
             handleChange={(e) => setCountry(e.target.value)}
           />
         </div>
-        <div className="mt-2 col-md-2">
-          <SelectInput options={houseOptions} name="homeType" data={homeType} handleSelect={(e) => setHomeType(e.target.value)} />
+        <div className='mt-2 col-md-2'>
+          <SelectInput
+            options={houseOptions}
+            name='homeType'
+            data={homeType}
+            handleSelect={(e) => setHomeType(e.target.value)}
+          />
         </div>
-        <button type="button" onClick={filterHouse} className="bg-primary rounded text-small text-bold text-white col-md-1">
+        <button
+          type='button'
+          onClick={filterHouse}
+          className='bg-primary rounded text-small text-bold text-white col-md-1'
+        >
           Filter&nbsp;&nbsp;
           <AiOutlineSearch size={20} />
           {/* <RangeSlider value={value} onInput={setValue} /> */}

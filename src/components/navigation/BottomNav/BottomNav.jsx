@@ -9,19 +9,20 @@ import './styles.css';
 import { Link } from 'react-router-dom';
 // import { UserContext } from '../../../contexts/UserContext';
 import { HOME_URL, PROPERTIES_URL } from '../../../routes/frontend';
+import { useMenuContext } from '../../../contexts/MenuContext';
 // import { MenuContext } from '../../../contexts/MenuContext';
 // import { inLocation } from '../../../utils/functions';
 
-const BottomNav = () =>
-// const { isLoggedIn } = useContext(UserContext);
-// const { setShowMenu } = useContext(MenuContext);
-// const handleShowMenu = () => {
-//   if (inLocation(ADMIN_DASHBOARD_URL)) {
-//     setShowMenu(true);
-//   }
-// };
-  (
-    <nav className="bottom-nav">
+const BottomNav = () => {
+  // const { isLoggedIn } = useContext(UserContext);
+  const { setShowMenu } = useMenuContext();
+  // const handleShowMenu = () => {
+  //   if (inLocation(ADMIN_DASHBOARD_URL)) {
+  //     setShowMenu(true);
+  //   }
+  // };
+  return (
+    <nav className='bottom-nav'>
       <ul>
         <li>
           <Link to={HOME_URL}>
@@ -35,8 +36,8 @@ const BottomNav = () =>
             <span>Properties</span>
           </Link>
         </li>
-        <li className="signin-wrapper">
-          <Link to="#">
+        <li className='signin-wrapper'>
+          <Link to='#' onClick={() => setShowMenu(true)}>
             <MdOutlineMenuOpen size={30} />
             <span>Menu</span>
           </Link>
@@ -44,4 +45,5 @@ const BottomNav = () =>
       </ul>
     </nav>
   );
+};
 export default BottomNav;

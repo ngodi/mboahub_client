@@ -2,12 +2,14 @@
 import React, { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router';
 import { SIGNIN_PATH } from './frontend';
-import { UserContext } from '../contexts/UserContext';
+import { useAuth } from '../contexts/AuthContext';
 
 const ProtectedRoutes = () => {
-  const { isLoggedIn } = useContext(UserContext);
+  const { user, loading } = useAuth();
 
-  return isLoggedIn ? <Outlet /> : <Navigate to={SIGNIN_PATH} />;
+  if (loading) return <p>Loading...</p>;
+
+  return user ? <Outlet /> : <Navigate to={SIGNIN_PATH} />;
 };
 
 export default ProtectedRoutes;

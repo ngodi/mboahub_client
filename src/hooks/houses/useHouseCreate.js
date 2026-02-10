@@ -1,33 +1,28 @@
 /* eslint-disable no-param-reassign */
 import { useState } from 'react';
 import { postRequestWithToken } from '../../utils/requests';
-import { MY_HOUSES_URL } from '../../routes/server';
-import { userStatus } from '../../services/UserServices';
+import { HOUSES_URL } from '../../routes/server';
 
 export const useHouseCreate = (urls) => {
-  let token = userStatus();
-  token = token && token.token;
-
   const [data, setData] = useState({});
   const [response, setResponse] = useState();
   const [error, setError] = useState();
   const [houseloading, setHouseLoading] = useState(false);
 
-  const handleCreateHouse = (e) => {
+  const handleCreateHouse = async (e) => {
     e.preventDefault();
     setHouseLoading(true);
 
     const houseData = { ...data, images: urls };
-    (async () => {
-      const res = await postRequestWithToken(houseData, token, MY_HOUSES_URL);
-      setHouseLoading(false);
-      if (res && res.success) {
-        setResponse(res);
-      } else {
-        // formatError(res && res.errors);
-        setError(res.errors);
-      }
-    })();
+    const res = await postRequestWithToken(houseData, HOUSES_URL);
+    setHouseLoading(false);
+    if (res && res.success) {
+      setResponse(res);
+    } else {
+      console.log(res.errors);
+      // formatError(res && res.errors);
+      setError(res.errors);
+    }
   };
 
   const handleChange = (e) => {

@@ -3,14 +3,11 @@
 import { useState } from 'react';
 import { ANONYMOUS_MESSAGE_URL, MESSAGE_CREATE_URL } from '../../routes/server';
 import { postRequestWithToken } from '../../utils/requests';
-import useUserStatus from '../auth/useUserStatus';
 
 export const useMessages = () => {
   const [messageloading, setMessageLoading] = useState(false);
   const [response, setResponse] = useState();
   const [error, setError] = useState();
-
-  const { isLoggedIn, token } = useUserStatus();
 
   const formatError = (errors) => {
     errors.forEach((error) => {
@@ -28,7 +25,7 @@ export const useMessages = () => {
     (async () => {
       setMessageLoading(true);
       try {
-        const res = await postRequestWithToken(data, token, url);
+        const res = await postRequestWithToken(data, url);
         setMessageLoading(false);
         if (res && res.success) {
           setResponse(true);
@@ -44,6 +41,9 @@ export const useMessages = () => {
   };
 
   return {
-    error, response, messageloading, handleSendMessage,
+    error,
+    response,
+    messageloading,
+    handleSendMessage,
   };
 };

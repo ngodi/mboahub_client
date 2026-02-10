@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-export const MenuContext = createContext();
+const MenuContext = createContext();
 
 export const MenuProvider = ({ children }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -12,3 +12,5 @@ export const MenuProvider = ({ children }) => {
     </MenuContext.Provider>
   );
 };
+
+export const useMenuContext = () => useContext(MenuContext);

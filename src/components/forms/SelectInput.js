@@ -3,23 +3,28 @@
 import React from 'react';
 import './SelectInput.css';
 
-function SelectInput({
-  name, options, data, label, handleSelect,
-}) {
+function SelectInput({ name, options, data, label, handleSelect, error }) {
   return (
-    <div className="form-group">
+    <div className='form-group mb-2'>
       {label && (
-        <label htmlFor={name} className="text-small text-dark-blue">
+        <label htmlFor={name} className='text-small text-dark-blue mb-2'>
           {label}
         </label>
       )}
-      <select value={data} className="select-input form-control" id={name} name={name} onChange={handleSelect}>
+      <select
+        value={data}
+        className='select-input form-control'
+        id={name}
+        name={name}
+        onChange={handleSelect}
+      >
         {options.map((option, i) => (
           <option key={i} value={option.value}>
             {option.label}
           </option>
         ))}
       </select>
+      {error && <p className='text-danger'>{error}</p>}
     </div>
   );
 }

@@ -1,0 +1,10 @@
+.otp-verification-container {
+  width: 800px;
+  min-width: 300px;
+  margin: 0 auto;
+  padding: 25px 100px;
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

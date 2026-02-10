@@ -1,47 +1,66 @@
 /* eslint-disable import/prefer-default-export */
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { postRequest } from '../../utils/requests';
 import { LOGIN_URL } from '../../routes/server';
+import { useAuth } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { OTP_VERIFICATION_PATH } from '../../routes/frontend';
 
 export const useLogin = () => {
-  const [data, setData] = useState({ email: '', password: '' });
-  const [remember, setRemember] = useState(false);
-  const [errors, setErrors] = useState();
-  const [loading, setLoading] = useState();
-
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const [data, setData] = useState({ email: '', password: '' });
+  const [remember, setRemember] = useState(false);
+  const [errors, setErrors] = useState([]);
+
+  const { setLoading, setUser } = useAuth();
+
+  const handleLogin = async (e) => {
     setLoading(true);
     e.preventDefault();
-
     if (!data.email) {
-      setErrors('Email is required');
+      setErrors((prev) => [
+        ...(Array.isArray(prev) ? prev : []),
+        { field: 'email', message: 'Email is required' },
+      ]);
+    }
+
+    if (!data.password) {
+      setErrors((prev) => [
+        ...(Array.isArray(prev) ? prev : []),
+        { field: 'password', message: 'Password is required' },
+      ]);
+    }
+
+    if (!data.email || !data.password) {
       setLoading(false);
       return;
     }
 
-    (async () => {
-      try {
-        const res = await postRequest(data, LOGIN_URL);
-        if (res.success && res.data.token) {
-          localStorage.setItem(
-            'login',
-            JSON.stringify({
-              token: res.data.token,
-            }),
-          );
-          navigate('/dashboard');
+    try {
+      const res = await postRequest(data, LOGIN_URL);
+      if (res.success !== false) {
+        if (res.data.user) {
+          setUser(res.data.user);
           setLoading(false);
         } else {
-          setErrors(res.data.errors);
+          if (
+            res.meta.error === 'EMAIL_VERIFY_ERROR' &&
+            !res.meta.user.emailVerified
+          ) {
+            setErrors(res.message);
+            navigate(OTP_VERIFICATION_PATH);
+          } else {
+            setErrors(res.errors);
+          }
           setLoading(false);
         }
-      } catch (e) {
-        setLoading(false);
       }
-    })();
+      setErrors(res.errors);
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -53,6 +72,11 @@ export const useLogin = () => {
   };
 
   return {
-    data, remember, setRemember, errors, loading, handleLogin, handleChange,
+    data,
+    remember,
+    setRemember,
+    errors,
+    handleLogin,
+    handleChange,
   };
 };

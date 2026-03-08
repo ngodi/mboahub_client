@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IoMdInformation } from 'react-icons/io';
+import { IoMdInformation, IoMdClose } from 'react-icons/io';
 import { GoLocation } from 'react-icons/go';
 // import GooglePlaces from '../../../apis/GooglePlaces/GooglePlaces';
 import FormInput from '../../../forms/FormInput';
@@ -11,16 +11,31 @@ import useHouseCreate from '../../../../hooks/houses/useHouseCreate';
 import ListingDetails from './ListingDetails';
 import LandedListingDetails from './LandedListingDetails';
 import TextAreaInput from '../../../forms/TextAreaInput';
+import LocationSearch from '../../../apis/Photon/LocationSearch/LocationSearch';
 
 function NewListing() {
-  const [address, setAddress] = useState('');
+  const [images, setImages] = useState([]);
+  const [city, setCity] = useState('');
+  const [street, setStreet] = useState('');
+  const [country, setCountry] = useState('');
   const [coordinates, setCoordinates] = useState({
     lat: null,
     lng: null,
   });
 
-  const { files, urls, imageLoading, handleFileChange, uploadImage } =
-    useUploadImage();
+  const {
+    imageLoading,
+    ACCEPTED_TYPES,
+    MAX_FILES,
+    processFiles,
+    removeImage,
+    errors,
+  } = useUploadImage(images, setImages);
+
+  useEffect(() => {
+    return () => images.forEach((img) => URL.revokeObjectURL(img.preview));
+  }, []);
+
   const {
     handleChange,
     handleSelect,
@@ -29,7 +44,8 @@ function NewListing() {
     houseloading,
     response,
     data,
-  } = useHouseCreate(urls);
+    progress,
+  } = useHouseCreate(images);
 
   const formErrors = Array.isArray(error)
     ? error.reduce((acc, error) => {
@@ -55,21 +71,18 @@ function NewListing() {
     { label: 'sold', value: 'SOLD' },
   ];
 
-  let addressArr = '';
-
   useEffect(() => {
-    addressArr = address.split(', ');
-    data.city = address.split(', ')[0];
-    data.street = address;
+    data.city = city;
+    data.street = street;
     data.lat = coordinates.lat;
     data.lng = coordinates.lng;
-    data.country = addressArr[addressArr.length - 1];
-  }, [address, coordinates]);
+    data.country = country;
+  }, [street, coordinates]);
 
   return (
     <div className='new-listing'>
       <h5 className='my-2 pb-4 border-bottom'>ADD LISTING</h5>
-      <form>
+      <form enctype='multipart/form-data'>
         <div className='listing-info shadow'>
           <h6>
             <span className='text-blue text-bold'>
@@ -146,6 +159,12 @@ function NewListing() {
           </div>
           <div className='row'>
             <div className='col-md-12'>
+              <LocationSearch
+                setCoordinates={setCoordinates}
+                setCity={setCity}
+                setStreet={setStreet}
+                setCountry={setCountry}
+              />
               {/* <GooglePlaces
                 address={address}
                 setAddress={setAddress}
@@ -230,42 +249,86 @@ function NewListing() {
           </div>
         </div>
         <div className='listing-info shadow'>
-          <div className='d-flex flex-wrap'>
-            {urls &&
-              urls.map((url, i) => (
-                <img
-                  alt='house-thumbnail'
-                  key={i}
-                  width='50px'
-                  className='img img-thumbnail m-1'
-                  src={url}
-                />
-              ))}
-            {imageLoading && 'uploading ...'}
-          </div>
           <h6>Image Upload</h6>
+          <span className='text-primary'>
+            {images.length} / {MAX_FILES}
+          </span>
+          <div className='d-flex flex-wrap'>
+            {images.map((img, idx) => (
+              <>
+                <div style={{ height: '3px', background: '#eee' }}>
+                  <div
+                    style={{
+                      width: `${progress[img.id] ?? 0}%`,
+                      background: '#c8a96e',
+                      height: '100%',
+                    }}
+                  />
+                </div>
+                <div
+                  className='position-relative'
+                  key={img.id}
+                  style={{ width: '100px' }}
+                >
+                  <img
+                    alt={img.name}
+                    className='img img-thumbnail m-1'
+                    style={{
+                      width: '100px',
+                      height: '75px',
+                      objectFit: 'cover',
+                    }}
+                    src={img.preview}
+                  />
+                  <button
+                    title='Remove'
+                    onClick={() => removeImage(img.id)}
+                    style={{
+                      position: 'absolute',
+                      top: '4px',
+                      right: '4px',
+                      background: 'rgba(0,0,0,0.6)',
+                      border: 'none',
+                      borderRadius: '50%',
+                      width: '20px',
+                      height: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      padding: 0,
+                    }}
+                  >
+                    <IoMdClose color='white' size={14} />
+                  </button>
+                </div>
+              </>
+            ))}
+          </div>
           <div className='row'>
             <div className='col-md-8 '>
               <div className='form-group'>
                 <input
                   type='file'
+                  accept={ACCEPTED_TYPES.join(',')}
                   className='form-control'
-                  disabled={urls && urls.length >= 10}
-                  onChange={handleFileChange}
+                  disabled={imageLoading}
+                  onChange={(e) => processFiles(e.target.files)}
                   multiple
                 />
               </div>
-            </div>
-            <div className='col-md-4'>
-              <button
-                disabled={files.length === 0}
-                type='button'
-                className='btn btn-primary btn-block'
-                onClick={uploadImage}
-              >
-                {' '}
-                {imageLoading ? '...' : 'Upload'}
-              </button>
+              {errors.length > 0 && (
+                <div className='text-danger mt-4'>
+                  {errors.map((err, i) => (
+                    <p key={i} className='text-danger'>
+                      ⚠ {err}
+                    </p>
+                  ))}
+                </div>
+              )}
+              {formErrors.image && (
+                <p className='text-danger'>⚠ {formErrors.image}</p>
+              )}
             </div>
           </div>
           {error && !Array.isArray(error) && (
@@ -275,11 +338,10 @@ function NewListing() {
           <button
             type='button'
             disabled={imageLoading}
-            className='btn btn-primary mt-4'
+            className='btn btn-primary'
             onClick={handleCreateHouse}
           >
-            {houseloading && '...'}
-            Add House
+            {houseloading ? '... creating' : 'Add House'}
           </button>
           {response && (
             <div className='text-blue'>House created successfully !!</div>

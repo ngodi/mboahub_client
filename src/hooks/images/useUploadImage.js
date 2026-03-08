@@ -1,41 +1,82 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import { IMAGE_UPLOAD_URL } from '../../routes/server';
 
-export const useUploadImage = () => {
-  const [files, setFiles] = useState('');
-  const [urls, setUrls] = useState([]);
-  const [imageLoading, setImageLoading] = useState(false);
+const MAX_FILES = 10;
+const MAX_SIZE_MB = 10;
+const ACCEPTED_TYPES = ['image/jpeg', 'image/png'];
 
-  const uploadImage = (e) => {
-    setImageLoading(true);
-    e.preventDefault();
-    Object.entries(files).map((image) => {
-      const data = new FormData();
-      data.append('file', image[1]);
-      data.append('upload_preset', process.env.REACT_APP_HOUSE_PRESET);
-      data.append('cloud_name', process.env.REACT_APP_CLOUDINARY_NAME);
+export const useUploadImage = (images, setImages) => {
+  const [files, setFiles] = useState([]);
+  const [errors, setErrors] = useState([]);
 
-      fetch(process.env.REACT_APP_CLOUDINARY_URL, { method: 'post', body: data })
-        .then((resp) => resp.json())
-        .then((data) => {
-          setUrls((prevState) => [...prevState, data.url]);
-        })
-        .catch((err) => console.log(err));
+  const data = new FormData();
 
-      return 0;
+  const processFiles = useCallback((files) => {
+    const newErrors = [];
+    const incoming = Array.from(files);
+
+    const valid = incoming.filter((file) => {
+      if (!ACCEPTED_TYPES.includes(file.type)) {
+        newErrors.push(
+          `"${file.name}" is not a supported format (JPG, PNG, WEBP).`,
+        );
+        return false;
+      }
+      if (file.size > MAX_SIZE_MB * 1024 * 1024) {
+        newErrors.push(`"${file.name}" exceeds ${MAX_SIZE_MB}MB limit.`);
+        return false;
+      }
+      return true;
     });
 
-    setImageLoading(false);
-    setFiles('');
-  };
+    setErrors(newErrors);
+
+    setImages((prev) => {
+      const remaining = MAX_FILES - prev.length;
+      if (remaining <= 0) {
+        setErrors((e) => [...e, `Maximum ${MAX_FILES} images allowed.`]);
+        return prev;
+      }
+
+      const toAdd = valid.slice(0, remaining).map((file) => ({
+        id: `${file.name}-${file.size}-${Date.now()}-${Math.random()}`,
+        file,
+        preview: URL.createObjectURL(file),
+        name: file.name,
+        size: file.size,
+        isCover: false,
+      }));
+
+      return [...prev, ...toAdd];
+    });
+  }, []);
+
+  const removeImage = useCallback((id) => {
+    setImages((prev) => {
+      const filtered = prev.filter((img) => img.id !== id);
+      // Revoke the object URL to free memory
+      const removed = prev.find((img) => img.id === id);
+      if (removed) URL.revokeObjectURL(removed.preview);
+      return filtered;
+    });
+  }, []);
 
   const handleFileChange = (e) => {
-    setFiles(e.target.files);
+    // setFiles(e.target.files);
+    setFiles(Array.from(e.target.files));
   };
 
   return {
-    files, urls, imageLoading, handleFileChange, uploadImage,
+    files,
+    handleFileChange,
+    images,
+    ACCEPTED_TYPES,
+    MAX_FILES,
+    processFiles,
+    removeImage,
+    errors,
   };
 };
 

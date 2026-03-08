@@ -1,7 +1,6 @@
-/* eslint-disable import/no-named-as-default */
 /* eslint-disable react/no-deprecated */
 import React, { lazy, Suspense } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -14,7 +13,7 @@ import { OtpResendTimerProvider } from './contexts/OtpResendTimerContext';
 
 const App = lazy(() => import('./App'));
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Suspense fallback={<FallBack />}>
       <Router>

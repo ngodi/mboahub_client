@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 export const HOUSES_URL = `/${BASE_URL}/houses`;
+export const PRESIGNED_URL = `/${BASE_URL}/upload/presigned-urls`;
 export const MY_HOUSES_URL = `/${BASE_URL}/my/houses`;
 export const getHouseUrl = (house_id) => `/${BASE_URL}/houses/${house_id}`;
 export const LOGIN_URL = `${BASE_URL}/auth/login`;

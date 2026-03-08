@@ -14,31 +14,43 @@ import PropertyType from '../common/PropertyType/PropertyType';
 function PropertyHeader({ house }) {
   const backgroundImage = house && house.images[0];
   return (
-    <div className="property-detail-header pb-4" style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div className="property-detail-left">
+    <div
+      className='property-detail-header pb-4'
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
+      <div className='property-detail-left'>
         <div>
-          <PropertyType type="Sale" />
-          <PropertyType type="Apartment" />
+          <PropertyType type='Sale' />
+          <PropertyType type='Apartment' />
         </div>
-        <div className="mt-4">{house ? <MainHeading heading={house.listing_name} /> : <Oval color="#00BFFF" height={30} width={30} />}</div>
-        <div className="mt-2 d-flex">
-          <LocationInfo textColor="text-white" address={`${house ? house.location : '...'}`} />
+        <div className='mt-4'>
+          {house ? (
+            <MainHeading heading={house.listingName} />
+          ) : (
+            <Oval color='#00BFFF' height={30} width={30} />
+          )}
+        </div>
+        <div className='mt-2 d-flex'>
+          <LocationInfo
+            textColor='text-white'
+            address={`${house ? house.street : '...'}`}
+          />
           &nbsp;&nbsp;
           {/* <Rating classes="text-white" review="Good" /> */}
         </div>
-        <div className="mt-2 mb-4 d-flex bold">
-          <h5 className="text-white">
+        <div className='mt-2 mb-4 d-flex bold'>
+          <h5 className='text-white'>
             Price:&nbsp;&nbsp;$&nbsp;
-            <span className="price-color">{`${house ? house.price || 0 : '...'}`}</span>
+            <span className='price-color'>{`${house ? house.price || 0 : '...'}`}</span>
           </h5>
           &nbsp;&nbsp;
-          <span className="text-white font-weight-bold">
+          <span className='text-white font-weight-bold'>
             Date:&nbsp;&nbsp;
-            {`${house ? house.published_at : '...'}`}
+            {`${house ? house.createdAt : '...'}`}
           </span>
         </div>
       </div>
-      <div className="property-detail-right mb-4">
+      <div className='property-detail-right mb-4'>
         {/* <ActionButton text="Share" /> */}
         {/* <div className="mt-4 d-flex">
           <div className="">

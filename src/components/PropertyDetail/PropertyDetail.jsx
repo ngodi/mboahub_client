@@ -33,102 +33,121 @@ function PropertyDetail() {
       <Navbar />
       <PropertyHeader house={house && house} />
       <BreadCrumb house={house && house} />
-      <div className="row mx-auto property-content bg-gray">
-        <div className="col-md-1" />
-        <div className="col-md-5">
-          <button style={{ border: 'none' }} type="button" onClick={() => navigate(-1)}>
-            <span className="p-2 bg-primary text-white text-small mb-4 rounded">
+      <div className='row mx-auto property-content bg-gray'>
+        <div className='col-md-1' />
+        <div className='col-md-5'>
+          <button
+            style={{ border: 'none' }}
+            type='button'
+            onClick={() => navigate(-1)}
+          >
+            <span className='p-2 bg-primary text-white text-small mb-4 rounded'>
               <TiArrowBackOutline size={30} />
               &nbsp;BACK
             </span>
           </button>
           {house?.images && <PropertyImageGallery images={house.images} />}
-          <div className="amenities text-small">
+          <div className='amenities text-small'>
             <div>
-              <MdOutlineHouse size={40} color="#3270FC" />
+              <MdOutlineHouse size={40} color='#3270FC' />
               <br />
-              <span className="text-dark-blue text-bold">Type</span>
+              <span className='text-dark-blue text-bold'>Type</span>
               <br />
               Apartment/House
             </div>
             <div>
-              <MdPeopleOutline size={40} color="#3270FC" />
+              <MdPeopleOutline size={40} color='#3270FC' />
               <br />
-              <span className="text-dark-blue text-bold">Accommodation</span>
+              <span className='text-dark-blue text-bold'>Accommodation</span>
               <br />
-              {house && house.properties.sitting_room}
+              {house && house.sittingRoom}
               &nbsp;Sitting rooms
             </div>
             <div>
-              <FaBed size={40} color="#3270FC" />
+              <FaBed size={40} color='#3270FC' />
               <br />
-              <span className="text-dark-blue text-bold">Bedrooms</span>
+              <span className='text-dark-blue text-bold'>Bedrooms</span>
               <br />
-              {house && house.properties.num_bed_rooms}
+              {house && house.bedrooms}
             </div>
             <div>
-              <FaBath size={40} color="#3270FC" />
+              <FaBath size={40} color='#3270FC' />
               <br />
-              <span className="text-dark-blue text-bold">Bathrooms/Toilets</span>
+              <span className='text-dark-blue text-bold'>
+                Bathrooms/Toilets
+              </span>
               <br />
-              {house && house.properties.num_toilets}
+              {house && house.toilets}
             </div>
             <div>
-              <GiRiceCooker size={40} color="#3270FC" />
+              <GiRiceCooker size={40} color='#3270FC' />
               <br />
-              <span className="text-dark-blue text-bold">Kitchen</span>
+              <span className='text-dark-blue text-bold'>Kitchen</span>
               <br />
-              {house && house.properties.kitchen ? 'Available' : 'None'}
+              {house && house.kitchen ? 'Available' : 'None'}
             </div>
             <div>
-              <MdFence size={40} color="#3270FC" />
+              <MdFence size={40} color='#3270FC' />
               <br />
-              <span className="text-dark-blue text-bold">&nbsp;</span>
+              <span className='text-dark-blue text-bold'>&nbsp;</span>
               <br />
-              {house && house.properties.fenced ? 'Fenced' : 'Not fenced'}
+              {house && house.fenced ? 'Fenced' : 'Not fenced'}
             </div>
           </div>
-          <div className="summary mt-4">
+          <div className='summary mt-4'>
             <h5>About This Listing</h5>
             {house ? <p>{house.summary}</p> : <p>.....</p>}
           </div>
-          <MapComponent height="40vh" width="100%" house={house && house} />
+          <MapComponent height='40vh' width='100%' house={house && house} />
         </div>
-        <div className="col-md-1" />
-        <div className="col-md-4">
-          <div className="agent-container rounded">
-            <div className="agent-top rounded-top">
-              <div className="agent-photo bg-white rounded shadow p-3 d-flex justify-content-around">
-                <img className="img img-thumbnail" src={`${avatar}`} width="120px" alt="agent" />
-                <div className="text-blue bold text-small">
-                  <p>{house && house.user.published_by}</p>
+        <div className='col-md-1' />
+        <div className='col-md-4'>
+          <div className='agent-container rounded'>
+            <div className='agent-top rounded-top'>
+              <div className='agent-photo bg-white rounded shadow p-3 d-flex justify-content-around'>
+                <img
+                  className='img img-thumbnail'
+                  src={`${avatar}`}
+                  width='120px'
+                  alt='agent'
+                />
+                <div className='text-blue bold text-small'>
+                  <p>{house && house.owner.name}</p>
                   <p>
-                    {house && house.user.house_count}
+                    {/* {house && house.user.house_count} */}
                     &nbsp;&nbsp;
-                    <span className="text-gray">Property Listings</span>
+                    <span className='text-gray'>Property Listings</span>
                   </p>
                   {/* <Rating /> */}
                 </div>
               </div>
             </div>
-            <div className="agent-bottom bg-white shadow rounded-bottom py-4 text-small">
-              <ContactItem icon={<AiOutlinePhone size="20" />} title="Phone" text={house?.user?.phone || 'UNAVAILABLE'} />
-              <ContactItem icon={<AiOutlineMail size="20" />} title="Mail" text={house?.user?.email} />
-              <div className="pt-3 px-3 border-top">
-                <TextButton text="View Profile" />
+            <div className='agent-bottom bg-white shadow rounded-bottom py-4 text-small'>
+              <ContactItem
+                icon={<AiOutlinePhone size='20' />}
+                title='Phone'
+                text={house?.owner?.phone || 'UNAVAILABLE'}
+              />
+              <ContactItem
+                icon={<AiOutlineMail size='20' />}
+                title='Mail'
+                text={house?.owner?.email}
+              />
+              <div className='pt-3 px-3 border-top'>
+                <TextButton text='View Profile' />
               </div>
             </div>
-            <div className="mt-4 shadow rounded bg-white">
-              <ButtonHeading text="Contact Property" />
+            <div className='mt-4 shadow rounded bg-white'>
+              <ButtonHeading text='Contact Property' />
               <ContactForm
-                ownerId={house && house.user.id}
+                ownerId={house && house.owner.id}
                 houseId={house && house.id}
                 phone={house?.user?.phone}
               />
             </div>
           </div>
         </div>
-        <div className="col-md-1" />
+        <div className='col-md-1' />
       </div>
       <Footer />
     </div>

@@ -1,16 +1,20 @@
-.new-listing{
-    margin: 50px 0;
+.new-listing {
+  margin: 50px 0;
 }
-.listing-info{
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    margin: 50px 0 !important;
+.listing-info {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 50px 0 !important;
 }
 
-.listing-info h6{
-    border-bottom: 1px solid lightgray;
-    padding-bottom: 20px;
-    color: #144272;
-    font-weight: bold;
+.listing-info h6 {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 20px;
+  color: #144272;
+  font-weight: bold;
+}
+
+.removeBtn {
+  background: 'rgba(180,40,40,0.4)';
 }

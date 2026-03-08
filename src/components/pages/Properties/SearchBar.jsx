@@ -10,18 +10,19 @@ const SearchBar = () => {
   const [street, setStreet] = useState('');
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
-  const [homeType, setHomeType] = useState('');
+  const [propertyCategory, setPropertyCategory] = useState('');
+  const [filters, setFilters] = useState();
   // const [value, setValue] = useState([30, 60]);
 
   const { inputObj, setInputObj } = useContext(SearchInputContext);
 
   const houseOptions = [
     { label: 'Select house type', value: '' },
-    { label: 'Single Room', value: 'single_room' },
-    { label: 'Studio', value: 'studio' },
-    { label: 'Apartment', value: 'apartment' },
-    { label: 'Villa', value: 'villa' },
-    { label: 'Hotel', value: 'hotel' },
+    { label: 'Single Room', value: 'SINGLE_ROOM' },
+    { label: 'Studio', value: 'STUDIO' },
+    { label: 'Apartment', value: 'APARTMENT' },
+    { label: 'Villa', value: 'VILLA' },
+    { label: 'Hotel', value: 'HOTEL' },
   ];
 
   const filterHouse = (e) => {
@@ -31,7 +32,7 @@ const SearchBar = () => {
       city,
       street,
       country,
-      homeType,
+      propertyCategory,
     });
   };
 
@@ -68,9 +69,9 @@ const SearchBar = () => {
         <div className='mt-2 col-md-2'>
           <SelectInput
             options={houseOptions}
-            name='homeType'
-            data={homeType}
-            handleSelect={(e) => setHomeType(e.target.value)}
+            name='propertyCategory'
+            data={propertyCategory}
+            handleSelect={(e) => setPropertyCategory(e.target.value)}
           />
         </div>
         <button

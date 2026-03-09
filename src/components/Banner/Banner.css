@@ -1,20 +1,19 @@
-.banner-section{
-    margin-top: 50px;
-    min-height: 70vh;
+.banner-section {
+  min-height: 70vh;
 }
-.banner-content{
-    padding-top: 200px;
-    padding-left: 20px;
-    padding-bottom: 150px;
-    padding-right: 20px;
+.banner-content {
+  padding-top: 200px;
+  padding-left: 20px;
+  padding-bottom: 150px;
+  padding-right: 20px;
 }
 
-.banner-content p{
-    color: white;
-    font-size: 48px;
-    font-weight: bold;
-    line-height: 60px;
-    margin-top: 20px;
+.banner-content p {
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 60px;
+  margin-top: 20px;
 }
 
 .contact-banner {
@@ -32,67 +31,68 @@
   border-radius: 15px;
 }
 
-.banner-content strong{
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
+.banner-content strong {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
 }
-.form-section{
-    border: 8px solid rgba(255, 255, 255, 0.522);
-    border-radius: 15px;
+.form-section {
+  border: 8px solid rgba(255, 255, 255, 0.522);
+  border-radius: 15px;
 }
-.form-section select, .form-section input{
-    border: none;
-    outline: 0;
-    background-color: white;
-    color: gray;
-    font-size: 14px;
-    height: 60px;
-}
-
-.form-section select{
-    border-left: 1px solid lightgray;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-
-    background-image: url("data:image/svg+xml;utf8,<svg fill='DodgerBlue' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-    background-repeat: no-repeat;
-    background-position-x: 100%;
-    background-position-y: 50%;
-    padding: 1rem;
-    padding-right: 3rem;
+.form-section select,
+.form-section input {
+  border: none;
+  outline: 0;
+  background-color: white;
+  color: gray;
+  font-size: 14px;
+  height: 60px;
 }
 
-.form-section button{
-    border-top-right-radius: 7px;
-    border-bottom-right-radius: 7px;
+.form-section select {
+  border-left: 1px solid lightgray;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: url("data:image/svg+xml;utf8,<svg fill='DodgerBlue' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 50%;
+  padding: 1rem;
+  padding-right: 3rem;
 }
-.form-section input{
-    border-top-left-radius: 7px;
-    border-bottom-left-radius: 7px;
+
+.form-section button {
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+.form-section input {
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 
 .advanced-search {
-    background-color: #3170FC;
-    color: #fff;
-    font-size: 12px;
-    font-weight: bold;
-    border-radius: 3px;
-    cursor: pointer;
-    padding: 10px;
-    margin-left: 10px;
+  background-color: #3170fc;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 10px;
 }
 
-.advanced-search:hover{
-    background-color: #fff;
-    color: #3170FC;
+.advanced-search:hover {
+  background-color: #fff;
+  color: #3170fc;
 }
 
 @media screen and (max-width: 912px) {
-  .contact-banner{
+  .contact-banner {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
   }
-};
+}

@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable  */
 /* eslint-disable no-param-reassign */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable  */
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { HOME_URL } from './frontend';

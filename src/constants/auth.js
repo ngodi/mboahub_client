@@ -1,2 +1,2 @@
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable  */
 export const AUTH_TOKEN = 'login';

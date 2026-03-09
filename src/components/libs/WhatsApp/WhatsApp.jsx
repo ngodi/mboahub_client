@@ -1,18 +1,23 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable  */
 /* eslint-disable react/prop-types */
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable  */
 import React from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import ReactWhatsapp from 'react-whatsapp';
 import './styles.css';
 
 const WhatsApp = ({ phone, color }) => (
-  <div className="whatsapp-chat">
+  <div className='whatsapp-chat'>
     {phone && (
-      <ReactWhatsapp number={phone.toString()} message="Hello interested in your property">
-        <strong className="tool-tip" style={{ color: `${color}` }}>Let&apos;s chat</strong>
+      <ReactWhatsapp
+        number={phone.toString()}
+        message='Hello interested in your property'
+      >
+        <strong className='tool-tip' style={{ color: `${color}` }}>
+          Let&apos;s chat
+        </strong>
         &nbsp;
-        <FaWhatsapp size={30} color="limegreen" />
+        <FaWhatsapp size={30} color='limegreen' />
       </ReactWhatsapp>
     )}
   </div>

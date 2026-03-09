@@ -1,6 +1,5 @@
 .search-bar {
-  top: 120px;
-  position: fixed;
+  position: relative;
 }
 
 .search-bar-content,

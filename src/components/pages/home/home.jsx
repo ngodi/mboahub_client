@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable  */
 import React from 'react';
 
 import Banner from '../../Banner/Banner';
@@ -16,7 +16,7 @@ import Footer from '../../Footer/Footer';
 import MapComponent from '../../MapComponent/MapComponent';
 
 export const Home = () => (
-  <div className="home">
+  <div className='home'>
     <Banner />
     <BreadCrumb />
     <LatestProperty />

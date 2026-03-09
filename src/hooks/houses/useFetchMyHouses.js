@@ -1,5 +1,5 @@
 /* eslint-disable no-unreachable */
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable  */
 import { useState, useEffect } from 'react';
 import { getRequestWithToken } from '../../utils/requests';
 import { MY_HOUSES_URL } from '../../routes/server';

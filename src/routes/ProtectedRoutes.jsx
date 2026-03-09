@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable  */
 import React, { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router';
 import { SIGNIN_PATH } from './frontend';

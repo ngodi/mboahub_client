@@ -14,13 +14,13 @@ import TextButton from '../common/TextButton/TextButton';
 import BreadCrumb from '../BreadCrumb/BreadCrumb';
 import ContactForm from '../ContactForm/ContactForm';
 import Footer from '../Footer/Footer';
-import MapComponent from '../MapComponent/MapComponent';
 
 import './PropertyDetail.css';
 import PropertyHeader from './PropertyHeader';
 import Navbar from '../navigation/navbar/navbar';
 import { useFetchHouse } from '../../hooks/houses/useFetchHouse';
 import PropertyImageGallery from '../ImageGallery/PropertyImageGallery';
+import LeafLetMap from '../MapComponent/LeafLetMap';
 
 function PropertyDetail() {
   const { house } = useFetchHouse();
@@ -98,7 +98,13 @@ function PropertyDetail() {
             <h5>About This Listing</h5>
             {house ? <p>{house.summary}</p> : <p>.....</p>}
           </div>
-          <MapComponent height='40vh' width='100%' house={house && house} />
+          <LeafLetMap
+            lat={house?.lat}
+            lng={house?.lng}
+            listingName={house?.listingName}
+            city={house?.city}
+            country={house?.country}
+          />
         </div>
         <div className='col-md-1' />
         <div className='col-md-4'>

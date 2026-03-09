@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable  */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import { Oval } from 'react-loader-spinner';
@@ -19,23 +19,34 @@ function LatestProperty() {
 
   const { houses, houseloading } = useFetchHouses();
 
-  const allStyle = item === ALL ? 'latest-property-header-item-active' : 'latest-property-header-item';
-  const forSaleStyle = item === FOR_SALE ? 'latest-property-header-item-active' : 'latest-property-header-item';
-  const forRent = item === FOR_RENT ? 'latest-property-header-item-active' : 'latest-property-header-item';
+  const allStyle =
+    item === ALL
+      ? 'latest-property-header-item-active'
+      : 'latest-property-header-item';
+  const forSaleStyle =
+    item === FOR_SALE
+      ? 'latest-property-header-item-active'
+      : 'latest-property-header-item';
+  const forRent =
+    item === FOR_RENT
+      ? 'latest-property-header-item-active'
+      : 'latest-property-header-item';
 
-  const allProperties = (item === ALL)
-    ? houses : houses?.filter((property) => property.business_type === item);
+  const allProperties =
+    item === ALL
+      ? houses
+      : houses?.filter((property) => property.propertyType === item);
 
   return (
-    <div className="latest-property">
-      <div className="container">
-        <div className="latest-property-header">
-          <div className="latest-property-header-left my-2">
-            <span className="primary-heading">BROWSE HOT OFFERS</span>
+    <div className='latest-property'>
+      <div className='container'>
+        <div className='latest-property-header'>
+          <div className='latest-property-header-left my-2'>
+            <span className='primary-heading'>BROWSE HOT OFFERS</span>
             <br />
-            <span className="secondary-heading">Latest Properties</span>
+            <span className='secondary-heading'>Latest Properties</span>
           </div>
-          <div className="latest-property-header-right my-2 rounded">
+          <div className='latest-property-header-right my-2 rounded'>
             <span onClick={() => setItem(ALL)} className={allStyle}>
               All Categories
             </span>
@@ -47,24 +58,25 @@ function LatestProperty() {
             </span>
           </div>
         </div>
-        <div className="latest-property-items">
+        <div className='latest-property-items'>
           {houseloading ? (
-            <div className="mx-auto">
-              <Oval color="#00BFFF" height={200} width={200} />
+            <div className='mx-auto'>
+              <Oval color='#00BFFF' height={200} width={200} />
             </div>
           ) : (
-            allProperties
-            && allProperties.map(
-              (house, i) => i < 8 && (
-              <div key={i} className="latest-property-item">
-                <PropertyItem house={house} key={house.id} />
-              </div>
-              ),
+            allProperties &&
+            allProperties.map(
+              (house, i) =>
+                i < 8 && (
+                  <div key={i} className='latest-property-item'>
+                    <PropertyItem house={house} key={house.id} />
+                  </div>
+                ),
             )
           )}
         </div>
         <div onClick={() => navigate('/properties')}>
-          <TextButton text="View all properties" />
+          <TextButton text='View all properties' />
         </div>
       </div>
     </div>

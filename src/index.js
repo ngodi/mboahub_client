@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'leaflet/dist/leaflet.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import FallBack from './components/FallBack';
 import { SearchInputContextProvider } from './contexts/SearchInputContext';

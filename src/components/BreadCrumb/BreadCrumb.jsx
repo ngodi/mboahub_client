@@ -1,5 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BsDot } from 'react-icons/bs';
@@ -10,19 +8,18 @@ import './BreadCrumb.css';
 function BreadCrumb({ house }) {
   const { pathname } = useLocation();
   return (
-    <section className="breadcrumb-section shadow">
-      <div className="container">
+    <section className='breadcrumb-section shadow'>
+      <div className='container'>
         <div>
-          <Link to="/" className="text-blue">
+          <Link to='/' className='text-blue'>
             Home
           </Link>
-          <Link to={pathname} className="text-blue">
-            <span className="text-blue">{house && <BsDot size="30" />}</span>
+          <Link to={pathname} className='text-blue'>
+            <span className='text-blue'>{house && <BsDot size='30' />}</span>
             {house?.listing_name}
           </Link>
         </div>
         {/* <ActionButton text="Share" /> */}
-
       </div>
     </section>
   );

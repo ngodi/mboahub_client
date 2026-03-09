@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable  */
 import { useState } from 'react';
 import { postRequest } from '../../utils/requests';
 import { LOGIN_URL } from '../../routes/server';

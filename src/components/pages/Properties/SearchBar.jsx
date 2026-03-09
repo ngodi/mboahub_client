@@ -11,7 +11,6 @@ const SearchBar = () => {
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [propertyCategory, setPropertyCategory] = useState('');
-  const [filters, setFilters] = useState();
   // const [value, setValue] = useState([30, 60]);
 
   const { inputObj, setInputObj } = useContext(SearchInputContext);
@@ -37,7 +36,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className='w-75 bg-white search-bar'>
+    <div className='w-100 bg-white search-bar'>
       <div className='search-bar-content row'>
         <div className='mt-2 col-md-2'>
           <FormInput
@@ -83,6 +82,12 @@ const SearchBar = () => {
           <AiOutlineSearch size={20} />
           {/* <RangeSlider value={value} onInput={setValue} /> */}
         </button>
+        <span
+          onClick={() => setInputObj()}
+          className='bg-secondary rounded text-small text-bold text-white col-md-1'
+        >
+          Reset&nbsp;&nbsp;
+        </span>
       </div>
     </div>
   );

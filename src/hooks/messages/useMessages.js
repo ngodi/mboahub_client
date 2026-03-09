@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable no-param-reassign */
 import { useState } from 'react';
 import { ANONYMOUS_MESSAGE_URL, MESSAGE_CREATE_URL } from '../../routes/server';

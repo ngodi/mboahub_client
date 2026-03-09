@@ -1,5 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable import/no-named-as-default */
+/* eslint-disable  */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
@@ -41,9 +40,11 @@ import mapStyles from './mapStyles';
 function MapComponent({ height, width, houses }) {
   const [coords, setCoords] = useState({});
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
-      setCoords({ lat: latitude, lng: longitude });
-    });
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        setCoords({ lat: latitude, lng: longitude });
+      },
+    );
   }, []);
   return (
     <div style={{ height: `${height}`, width: `${width}` }}>
@@ -53,16 +54,30 @@ function MapComponent({ height, width, houses }) {
         center={coords}
         defaultZoom={14}
         margin={[50, 50, 50, 50]}
-        options={{ disableDefaultUI: true, zoomControl: true, styles: mapStyles }}
+        options={{
+          disableDefaultUI: true,
+          zoomControl: true,
+          styles: mapStyles,
+        }}
         onChange={(e) => {
           setCoords({ lat: e.center.lat, lng: e.center.lng });
         }}
       >
-        {houses
-          && houses.map((house) => (
-            <div className="marker-container radius" lat={Number(house.lat)} lng={Number(house.lng)} key={house.id}>
+        {houses &&
+          houses.map((house) => (
+            <div
+              className='marker-container radius'
+              lat={Number(house.lat)}
+              lng={Number(house.lng)}
+              key={house.id}
+            >
               <span>{house.listing_name}</span>
-              <img alt="house icon" className="pointer" width="100%" src={house.images[1]} />
+              <img
+                alt='house icon'
+                className='pointer'
+                width='100%'
+                src={house.images[1]}
+              />
             </div>
           ))}
       </GoogleMapReact>

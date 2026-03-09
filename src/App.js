@@ -47,10 +47,7 @@ function App() {
             <Route path='edit_profile' element={<MyProfile />} />
           </Route>
         </Route>
-        <Route
-          path='properties/:listingName?/:location?/:businessType?'
-          element={<Properties />}
-        />
+        <Route path='properties' element={<Properties />} />
         <Route path='houses/:house_id' element={<PropertyDetail />} />
         <Route path='*' element={<NotFound />} />
       </Routes>

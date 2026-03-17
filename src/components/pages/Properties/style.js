@@ -10,7 +10,7 @@ export const PageWrapper = styled.div`
 export const styles = {
   filterTrigger: {
     position: 'fixed',
-    top: 120,
+    top: 100,
     right: 16,
     zIndex: 100,
     display: 'flex',

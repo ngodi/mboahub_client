@@ -27,6 +27,8 @@ import ProtectedRoutes from './routes/ProtectedRoutes';
 import { AnonymousRoute } from './routes/AnonymousRoute';
 import OtpVerification from './components/pages/Auth/OtpVerification';
 import PasswordReset from './components/pages/Auth/PasswordReset';
+import UpdateProperty from './components/pages/Properties/PropertyUpdate';
+
 function App() {
   return (
     <div className='App'>
@@ -42,8 +44,12 @@ function App() {
           <Route path={ADMIN_DASHBOARD_URL} element={<Dashboard />}>
             <Route path='' element={<AllMyListings />} />
             <Route path='my_listings' element={<AllMyListings />} />
+            <Route path='my_listings/:house_id' element={<PropertyDetails />} />
+            <Route
+              path='my_listings/:house_id/update'
+              element={<UpdateProperty />}
+            />
             <Route path='new_listing' element={<NewListing />} />
-            <Route path=':house_id' element={<PropertyDetails />} />
             <Route path='edit_profile' element={<MyProfile />} />
           </Route>
         </Route>

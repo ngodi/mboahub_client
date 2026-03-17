@@ -1,12 +1,19 @@
-/* styles.css */
 .bottom-nav {
   background-color: #fff;
-  color: #333;
+  border-top: 1px solid #e8ecf4;
   position: fixed;
-  top: 94vh;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
+
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+
+  z-index: 200;
+
   display: none;
-  z-index: 100;
+
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.07);
 }
 
 .bottom-nav ul {
@@ -14,24 +21,58 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 7px auto;
+  margin: 0;
+  padding: 6px 0 8px;
 }
 
 .bottom-nav li {
-  margin-right: 10px;
-  font-size: 12px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
-.bottom-nav li a {
-  color: #333;
-  text-decoration: none;
+.bottom-nav-link {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 3px;
+  text-decoration: none;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 4px 10px;
+  border-radius: 8px;
+  transition:
+    color 0.15s,
+    background 0.15s;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.signin-wrapper {
-  position: relative;
+.bottom-nav-link:hover {
+  color: #3270fc;
+  background: #f0f4ff;
+}
+
+.bottom-nav-link.active {
+  color: #3270fc;
+}
+
+.bottom-nav-link.active svg {
+  transform: scale(1.1);
+}
+
+.bottom-nav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  outline: none;
+}
+
+.bottom-nav-btn:focus-visible {
+  outline: 2px solid #3270fc;
+  outline-offset: 2px;
 }
 
 .sub-menu-nav {
@@ -39,31 +80,40 @@
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  border-radius: 5px;
-  bottom: 45px;
-  box-shadow: 2px 2px 4px lightgray;
+  border-radius: 8px;
+  bottom: 60px;
+  right: 0;
+  min-width: 140px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e8ecf4;
+  overflow: hidden;
+}
+
+.sub-menu-nav span {
+  cursor: pointer;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #334155;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.sub-menu-nav span:hover {
+  background: #f0f4ff;
+  color: #3270fc;
 }
 
 .show {
   display: block;
-};
+}
 
 .hide {
   display: none;
 }
 
-.sub-menu-nav span {
-  cursor: pointer;
-  padding: 7px;
-  border-radius: 5px;
-}
-
-.sub-menu-nav span:hover {
-  background: lightgray;
-}
-
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1023px) {
   .bottom-nav {
     display: block;
   }
-};
+}

@@ -18,3 +18,5 @@ export const PROPERTY_TYPE_OBJECT = {
   [ROOM]: 'Room',
   [VILLA]: 'Villa',
 };
+
+export const defaultImage = '/photos/no-image-placeholder.png';

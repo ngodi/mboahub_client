@@ -5,6 +5,7 @@ import FormInput from '../../forms/FormInput';
 import SelectInput from '../../forms/SelectInput';
 import { SearchInputContext } from '../../../contexts/SearchInputContext';
 import './styles.css';
+import { FiSettings } from 'react-icons/fi';
 
 const SearchBar = () => {
   const [street, setStreet] = useState('');
@@ -83,10 +84,11 @@ const SearchBar = () => {
           {/* <RangeSlider value={value} onInput={setValue} /> */}
         </button>
         <span
-          onClick={() => setInputObj()}
-          className='bg-secondary rounded text-small text-bold text-white col-md-1'
+          onClick={() => setInputObj({})}
+          style={{ cursor: 'pointer' }}
+          className='col-md-1 rounded text-small text-bold text-primary reset-btn'
         >
-          Reset&nbsp;&nbsp;
+          <FiSettings size={20} /> Reset
         </span>
       </div>
     </div>

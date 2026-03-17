@@ -1,76 +1,76 @@
-.property-detail-header{
-    height: 40vh;
-    margin-top: 75px;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-    font-weight: bold;
-    position: relative;
-    background-color: rgba(12, 10, 10, 0.646);
+.property-detail-header {
+  height: 40vh;
+  margin-top: 75px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  font-weight: bold;
+  position: relative;
+  background-color: rgba(12, 10, 10, 0.646);
 
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-.bold h5{
-    font-weight: bold;
+.bold h5 {
+  font-weight: bold;
 }
 
-.price-color{
-    color:#3270FC;
+.price-color {
+  color: #3270fc;
 }
 
 .property-content {
-    padding-top: 60px;
-    margin-top: 13px;
+  padding-top: 60px;
+  margin-top: 13px;
 }
 
-.property-detail-right{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    color: white;
-    font-weight: bold;
+.property-detail-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: white;
+  font-weight: bold;
 }
 
-.summary p{
-    text-align: justify;
-    margin: 20px 0;
+.summary p {
+  text-align: justify;
+  margin: 20px 0;
 }
 
-.summary{
-    color: #566985;
+.summary {
+  color: #566985;
 }
 .summary h5 {
-    font-weight: bold;
-    margin: 10px 0;
+  font-weight: bold;
+  margin: 10px 0;
 }
-.amenities >*{
-    text-align: center;
-    border: 1px solid lightgray;
-    padding: 25px 10px;
-    min-width: 150px;
-}
-
-.amenities{
-    margin: 0 8px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+.amenities > * {
+  text-align: center;
+  border: 1px solid lightgray;
+  padding: 25px 10px;
+  min-width: 150px;
 }
 
-.agent-top{
-    background: url('https://img.freepik.com/free-vector/gradient-dynamic-blue-lines-background_23-2148995756.jpg');
-    height: 160px;
-    position: relative;
+.amenities {
+  margin: 0 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.agent-photo{
-    position: absolute;
-    height: 130px;
-    bottom: -20px;
-    left: 30px;
-    right: 30px;
+.agent-top {
+  background: url('https://img.freepik.com/free-vector/gradient-dynamic-blue-lines-background_23-2148995756.jpg');
+  height: 160px;
+  position: relative;
+}
+
+.agent-photo {
+  position: absolute;
+  height: 130px;
+  bottom: -20px;
+  left: 30px;
+  right: 30px;
 }

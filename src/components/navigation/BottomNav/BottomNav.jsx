@@ -1,49 +1,56 @@
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable  */
-/* eslint-disable  */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
 import { FaHome } from 'react-icons/fa';
 import { MdOutlineMenuOpen, MdRealEstateAgent } from 'react-icons/md';
+import { NavLink } from 'react-router-dom';
 import './styles.css';
-import { Link } from 'react-router-dom';
-// import { UserContext } from '../../../contexts/UserContext';
 import { HOME_URL, PROPERTIES_URL } from '../../../routes/frontend';
 import { useMenuContext } from '../../../contexts/MenuContext';
-// import { MenuContext } from '../../../contexts/MenuContext';
-// import { inLocation } from '../../../utils/functions';
 
 const BottomNav = () => {
-  // const { isLoggedIn } = useContext(UserContext);
   const { setShowMenu } = useMenuContext();
-  // const handleShowMenu = () => {
-  //   if (inLocation(ADMIN_DASHBOARD_URL)) {
-  //     setShowMenu(true);
-  //   }
-  // };
+
   return (
     <nav className='bottom-nav'>
       <ul>
         <li>
-          <Link to={HOME_URL}>
-            <FaHome size={30} />
+          <NavLink
+            to={HOME_URL}
+            end
+            className={({ isActive }) =>
+              isActive ? 'bottom-nav-link active' : 'bottom-nav-link'
+            }
+          >
+            <FaHome size={26} />
             <span>Home</span>
-          </Link>
+          </NavLink>
         </li>
+
         <li>
-          <Link to={PROPERTIES_URL}>
-            <MdRealEstateAgent size={30} />
+          <NavLink
+            to={PROPERTIES_URL}
+            className={({ isActive }) =>
+              isActive ? 'bottom-nav-link active' : 'bottom-nav-link'
+            }
+          >
+            <MdRealEstateAgent size={26} />
             <span>Properties</span>
-          </Link>
+          </NavLink>
         </li>
-        <li className='signin-wrapper'>
-          <Link to='#' onClick={() => setShowMenu(true)}>
-            <MdOutlineMenuOpen size={30} />
+
+        <li>
+          <button
+            type='button'
+            className='bottom-nav-link bottom-nav-btn'
+            onClick={() => setShowMenu(true)}
+            aria-label='Open menu'
+          >
+            <MdOutlineMenuOpen size={26} />
             <span>Menu</span>
-          </Link>
+          </button>
         </li>
       </ul>
     </nav>
   );
 };
+
 export default BottomNav;

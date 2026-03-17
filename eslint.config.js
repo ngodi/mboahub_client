@@ -32,14 +32,12 @@ export default [
       ecmaVersion: 'latest',
       sourceType: 'module',
 
-      // ✅ THIS enables JSX parsing
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
         },
       },
 
-      // ✅ THIS fixes window, fetch, console, localStorage, etc.
       globals: {
         ...globals.browser,
         ...globals.node,

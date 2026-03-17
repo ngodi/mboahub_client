@@ -15,8 +15,8 @@ const ListingDetails = ({ handleChange, handleSelect, data, formErrors }) => {
               name='bedrooms'
               placeholder='No. of bedrooms'
               label='Bedrooms'
-              data={data.bedrooms}
-              error={formErrors.bedrooms}
+              data={data?.bedrooms}
+              error={formErrors?.bedrooms}
               handleChange={handleChange}
             />
           </div>
@@ -26,8 +26,8 @@ const ListingDetails = ({ handleChange, handleSelect, data, formErrors }) => {
               name='sittingRoom'
               placeholder='No. of Sitting Room'
               label='Sitting rooms'
-              data={data.sittingRoom}
-              error={formErrors.sittingRoom}
+              data={data?.sittingRoom}
+              error={formErrors?.sittingRoom}
               handleChange={handleChange}
             />
           </div>
@@ -37,13 +37,13 @@ const ListingDetails = ({ handleChange, handleSelect, data, formErrors }) => {
             <SelectInput
               name='parking'
               label='Garage'
-              data={data.parking}
+              data={data?.parking}
               options={[
                 { label: 'Has Parking', value: true },
                 { label: 'No Parking', value: false },
               ]}
               handleSelect={handleSelect}
-              error={formErrors.parking}
+              error={formErrors?.parking}
             />
           </div>
           <div className='col-md-6'>
@@ -52,8 +52,8 @@ const ListingDetails = ({ handleChange, handleSelect, data, formErrors }) => {
               name='kitchens'
               placeholder='No. of Kitchens'
               label='Kitchens'
-              data={data.kitchens}
-              error={formErrors.kitchens}
+              data={data?.kitchens}
+              error={formErrors?.kitchens}
               handleChange={handleChange}
             />
           </div>
@@ -63,13 +63,13 @@ const ListingDetails = ({ handleChange, handleSelect, data, formErrors }) => {
             <SelectInput
               name='fence'
               label='Fenced ?'
-              data={data.fence}
+              data={data?.fenced}
               options={[
                 { label: 'Is Fenced', value: true },
                 { label: 'Not Fenced', value: false },
               ]}
               handleSelect={handleSelect}
-              error={formErrors.fenced}
+              error={formErrors?.fenced}
             />
           </div>
           <div className='col-md-6'>
@@ -78,8 +78,8 @@ const ListingDetails = ({ handleChange, handleSelect, data, formErrors }) => {
               name='toilets'
               placeholder='No. of Toilets'
               label='Toilets'
-              data={data.toilets}
-              error={formErrors.toilets}
+              data={data?.toilets}
+              error={formErrors?.toilets}
               handleChange={handleChange}
             />
           </div>
@@ -93,6 +93,7 @@ ListingDetails.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleSelect: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired,
+  formErrors: PropTypes.object,
 };
 
 export default ListingDetails;

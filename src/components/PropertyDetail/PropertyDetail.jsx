@@ -21,6 +21,7 @@ import Navbar from '../navigation/navbar/navbar';
 import { useFetchHouse } from '../../hooks/houses/useFetchHouse';
 import PropertyImageGallery from '../ImageGallery/PropertyImageGallery';
 import LeafLetMap from '../MapComponent/LeafLetMap';
+import { defaultImage } from '../../constants/houseDetails';
 
 function PropertyDetail() {
   const { house } = useFetchHouse();
@@ -46,7 +47,13 @@ function PropertyDetail() {
               &nbsp;BACK
             </span>
           </button>
-          {house?.images && <PropertyImageGallery images={house.images} />}
+          {house?.images.length > 0 ? (
+            <PropertyImageGallery images={house.images} />
+          ) : (
+            <div className='d-flex justify-content-center align-items-center'>
+              <img src={defaultImage} width={'40%'} alt='house' />
+            </div>
+          )}
           <div className='amenities text-small'>
             <div>
               <MdOutlineHouse size={40} color='#3270FC' />

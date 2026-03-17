@@ -17,10 +17,12 @@ import {
   PROPERTY_TYPE_OBJECT,
 } from '../../constants/houseDetails';
 
+//src="/photos/mboa_logo.webp"
 const PropertyItem = ({ house }) => {
-  const backgroundImage =
-    house.images[0] ||
-    'https://images.pexels.com/photos/7937225/pexels-photo-7937225.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
+  let backgroundImage =
+    house.images.length > 0
+      ? house.images[0]
+      : '/photos/no-image-placeholder.png';
 
   return (
     <div className='property-item bg-white rounded shadow my-4'>

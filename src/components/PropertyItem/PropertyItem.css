@@ -1,75 +1,75 @@
-.property-item{
-    min-width: 250px;
-    width: 400px;
-    height: 500px;
+.property-item {
+  min-width: 250px;
+  width: 350px;
+  height: 500px;
 }
 
-.property-item-up-left{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 200px;
+.property-item-up-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
 }
-.property-item-up-right{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
+.property-item-up-right {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
-.property-item-up{
-    padding: 25px 20px;
-    display: flex;
-    justify-content: space-between;
+.property-item-up {
+  padding: 25px 20px;
+  display: flex;
+  justify-content: space-between;
 
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .up-left-bottom {
-    font-size: 14px;
-    font-weight: bold;
-    color: white;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
 }
-.up-right-bottom{
-    color: white;
+.up-right-bottom {
+  color: white;
 }
-.up-right-top{
-    display: flex;
-    flex-direction: column;
+.up-right-top {
+  display: flex;
+  flex-direction: column;
 }
 
-.property-item-down{
-    padding: 15px;
+.property-item-down {
+  padding: 15px;
 }
 
 .property-features > * {
-    margin-right: 10px;
+  margin-right: 10px;
 }
-.property-features{
-    border-bottom: 1px solid lightgray;
-    padding-bottom: 20px;
+.property-features {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 20px;
 }
 .property-count {
-    font-size: 12px;
-    font-weight: bold;
+  font-size: 12px;
+  font-weight: bold;
 }
 .property-item-down p {
-    font-size: 12px;
-    height: 30px;
+  font-size: 12px;
+  height: 30px;
 }
 .property-item-down h4 {
-    font-size: 16px;
-    font-weight: bold;
+  font-size: 16px;
+  font-weight: bold;
 }
 .property-item-down h5 {
-    font-size: 18px;
-    font-weight: bold;
-    color: #3270FC;
+  font-size: 18px;
+  font-weight: bold;
+  color: #3270fc;
 }
 
 .property-more {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
 }

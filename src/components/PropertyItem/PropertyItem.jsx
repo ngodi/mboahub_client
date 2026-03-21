@@ -17,7 +17,6 @@ import {
   PROPERTY_TYPE_OBJECT,
 } from '../../constants/houseDetails';
 
-//src="/photos/mboa_logo.webp"
 const PropertyItem = ({ house }) => {
   let backgroundImage =
     house.images.length > 0

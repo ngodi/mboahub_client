@@ -35,7 +35,6 @@ function OtpVerification() {
 
   return (
     <div>
-      <Navbar />
       <div className='otp-verification-container shadow rounded'>
         {showOtp ? (
           <>
